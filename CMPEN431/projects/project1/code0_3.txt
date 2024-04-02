@@ -1,0 +1,10 @@
+# VLIW for code0_1
+
+addi $1, $1, 32 | nop
+L:addi $1, $1, -4 | nop
+sll $2, $1, 2 | nop
+addi $3, $1, 42 | nop
+addi $4, $1, 43 | sw $3, 0($2)
+addi $5, $1, 44 | sw $4, 4($2)
+addi $6, $1, 45 | sw $5, 8($2)
+bne $1, $0, L | sw $6, 12($2)

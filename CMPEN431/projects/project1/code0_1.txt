@@ -1,0 +1,14 @@
+# unrolls Q1-1’s code by an unrolling factor of 4.
+
+addi $1, $1, 32
+L:addi $1, $1, -4
+sll $2, $1, 2
+addi $3, $1, 42
+addi $4, $1, 43
+addi $5, $1, 44
+addi $6, $1, 45
+sw $3, 0($2)
+sw $4, 4($2)
+sw $5, 8($2)
+sw $6, 12($2)
+bne $1, $0, L

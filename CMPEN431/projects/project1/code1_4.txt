@@ -1,0 +1,7 @@
+#vliw 4 issues for code1_0
+
+addi $1, $1, 128 | nop | nop | nop
+L: addi $1, $1, -4 | nop | lw $5, 124($1) | lw $6, 128($1)
+nop | nop | nop | nop 
+add $5, $5, $6 | nop | nop | nop
+bne $1, $0, L | nop | sw $5, 0($1) | nop 
