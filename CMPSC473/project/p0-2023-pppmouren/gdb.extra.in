@@ -1,0 +1,9 @@
+b 15
+r
+set variable var = 52
+n
+s
+set variable $rdx=0x0
+c
+q
+

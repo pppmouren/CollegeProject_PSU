@@ -1,0 +1,7 @@
+b 15
+run
+set variable var=52
+n
+set variable var=0
+c
+q
