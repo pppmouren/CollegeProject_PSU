@@ -1,0 +1,10 @@
+************ Running commands from file inputs/task4b.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 0;
+[32mopen[0m: name = /bin/cp; flags = 1; constrain = (FLAG_NOFOLLOW_UNTRUSTED)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 5
+
+ ======= read: 0; 5 bytes ==========
+rrrrr
+[32mclose[0m: 0
+***********  Done *************

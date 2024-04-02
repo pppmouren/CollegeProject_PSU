@@ -1,0 +1,50 @@
+************ Running commands from file inputs/task3b.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 0;
+[32mlink[0m: target = /bin; name = /sbin; constrain = (NONE)
+[32mopen[0m: name = /sbin/cp.1; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 10
+
+ ======= read: 0; 10 bytes ==========
+rrrrrrrrrr
+[32mclose[0m: 0
+[32muser[0m: uid = 1000;
+[32mlink[0m: target = /var/www; name = /tmp/html; constrain = (NONE)
+[32mlist[0m: void
+|_ foo                                          uid=0 mode=0
+|_ bin/                                            flags=0x0
+  |_ cp.1                                       uid=0 mode=1
+  |_ cp[31m*[0m                                        uid=0 mode=0
+|_ tmp/                                            flags=0x1
+  |_ html[31m*[0m                                   uid=1000 mode=0
+  |_ steal[31m*[0m                                  uid=1000 mode=0
+|_ home/                                           flags=0x0
+  |_ bob/                                          flags=0x0
+      |_ .ssh/                                     flags=0x0
+          |_ config                          uid=1001 mode=5
+  |_ alice/                                        flags=0x0
+      |_ .ssh/                                     flags=0x0
+          |_ config                          uid=1000 mode=5
+|_ bar[31m*[0m                                         uid=0 mode=0
+|_ broken[31m*[0m                                      uid=0 mode=0
+|_ etc/                                            flags=0x0
+  |_ passwd                                     uid=0 mode=2
+  |_ dbus.conf                                  uid=0 mode=3
+  |_ group                                      uid=0 mode=2
+  |_ default/                                      flags=0x0
+      |_ dbus[31m*[0m                                  uid=0 mode=0
+|_ var/                                            flags=0x1
+  |_ www/                                          flags=0x1
+      |_ .htpasswd                            uid=200 mode=1
+      |_ index.html                           uid=200 mode=1
+|_ opt/                                            flags=0x1
+|_ sbin[31m*[0m                                        uid=0 mode=0
+[32muser[0m: uid = 200;
+[32mopen[0m: name = /tmp/html/.htpasswd; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 10
+
+ ======= read: 0; 10 bytes ==========
+tttttttttt
+[32mclose[0m: 0
+***********  Done *************

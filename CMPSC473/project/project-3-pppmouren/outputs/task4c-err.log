@@ -1,0 +1,26 @@
+************ Running commands from file inputs/task4c-err.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 200;
+[32mopen[0m: name = /var/WwW/.htpasswd; flags = 1; constrain = (FLAG_SAVEDNAME)
+[31mCMPSC473 Error:[0m cannot resolve path
+[31mPath: [0m[/] -> [var]^ -> [WwW] -> [.htpasswd] -> END
+ret: fd=-1
+[32mopen[0m: name = /TMP/Steal; flags = 1; constrain = (FLAG_SAVEDNAME)
+[31mCMPSC473 Error:[0m cannot resolve path
+[31mPath: [0m[/]^ -> [TMP] -> [Steal] -> END
+ret: fd=-1
+[32mopen[0m: name = /Tmp/Html/index.html; flags = 1; constrain = (FLAG_SAVEDNAME)
+[31mCMPSC473 Error:[0m cannot resolve path
+[31mPath: [0m[/]^ -> [Tmp] -> [Html] -> [index.html] -> END
+ret: fd=-1
+[32mopen[0m: name = /vaR/WWW/file.txt; flags = 1; constrain = (FLAG_CREAT | FLAG_SAVEDNAME)
+[31mCMPSC473 Error:[0m cannot resolve path
+[31mPath: [0m[/]^ -> [vaR] -> [WWW] -> [file.txt] -> END
+ret: fd=-1
+[32mmkdir[0m: name = /var/WWW/images; flags = (D_ICASE); constrain = (FLAG_SAVEDNAME)
+[31mCMPSC473 Error:[0m cannot resolve path
+[31mPath: [0m[/] -> [var]^ -> [WWW] -> [images] -> END
+[32mopen[0m: name = /TMP/STEAL; flags = 1; constrain = (FLAG_NOFOLLOW | FLAG_SAVEDNAME)
+[31mCMPSC473 Error:[0m cannot resolve path
+[31mPath: [0m[/]^ -> [TMP] -> [STEAL] -> END
+ret: fd=-1
+***********  Done *************

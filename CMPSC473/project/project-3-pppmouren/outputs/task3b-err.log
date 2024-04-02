@@ -1,0 +1,6 @@
+************ Running commands from file inputs/task3b-err.cmd on filesystem in file eval/grade-disk.img **********
+[32mopen[0m: name = /broken/file.txt; flags = 1; constrain = (NONE)
+[31mCMPSC473 Error:[0m cannot resolve path
+[31mPath: [0m[/]^ -> [BAZ] -> [file.txt] -> END
+ret: fd=-1
+***********  Done *************

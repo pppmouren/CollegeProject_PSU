@@ -1,0 +1,24 @@
+************ Running commands from file inputs/task4c.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 200;
+[32mopen[0m: name = /tmp/STEAL; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 5
+
+ ======= read: 0; 5 bytes ==========
+ttttt
+[32mclose[0m: 0
+[32mopen[0m: name = /var/WWW/.HtPasswd; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mopen[0m: name = /var/Www/index.HTML; flags = 1; constrain = (NONE)
+ret: fd=1
+[32mread[0m: fd = 0; buffer = buf; size = 5
+
+ ======= read: 0; 5 bytes ==========
+ttttt
+[32mread[0m: fd = 1; buffer = buf; size = 5
+
+ ======= read: 1; 5 bytes ==========
+
+[32mclose[0m: 0
+[32mclose[0m: 1
+***********  Done *************

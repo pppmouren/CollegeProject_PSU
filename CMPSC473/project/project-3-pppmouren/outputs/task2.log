@@ -1,0 +1,70 @@
+************ Running commands from file inputs/task2.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 0;
+[32mmkdir[0m: name = /etc; flags = (NONE); constrain = (NONE)
+[32mopen[0m: name = /etc/passwd; flags = 2; constrain = (FLAG_CREAT)
+ret: fd=0
+[32mopen[0m: name = /etc/group; flags = 2; constrain = (FLAG_CREAT)
+ret: fd=1
+[32mclose[0m: 0
+[32mclose[0m: 1
+[32mmkdir[0m: name = /etc/default; flags = (NONE); constrain = (NONE)
+[32mlink[0m: target = /etc/dbus.conf; name = /etc/default/dbus; constrain = (NONE)
+[32mopen[0m: name = /etc/dbus.conf; flags = 3; constrain = (FLAG_CREAT)
+ret: fd=0
+[32mwrite[0m: fd = 0; buf file = data1; unused = 10
+[32mclose[0m: 0
+[32mopen[0m: name = /etc/dbus.conf; flags = 3; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = dbus; size = 10
+
+ ======= read: 0; 10 bytes ==========
+rrrrrrrrrr
+[32mclose[0m: 0
+[32mmkdir[0m: name = /home; flags = (NONE); constrain = (NONE)
+[32mmkdir[0m: name = /home/alice; flags = (NONE); constrain = (NONE)
+[32mmkdir[0m: name = /home/alice/.ssh; flags = (NONE); constrain = (NONE)
+[32mmkdir[0m: name = /home/bob; flags = (NONE); constrain = (NONE)
+[32mmkdir[0m: name = /home/bob/.ssh; flags = (NONE); constrain = (NONE)
+[32muser[0m: uid = 1000;
+[32mopen[0m: name = /home/alice/.ssh/config; flags = 5; constrain = (FLAG_CREAT)
+ret: fd=0
+[32mwrite[0m: fd = 0; buf file = data1; unused = 10
+[32mclose[0m: 0
+[32mopen[0m: name = /home/alice/.ssh/config; flags = 5; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 15
+
+ ======= read: 0; 15 bytes ==========
+rrrrrrrrrrrrrrr
+[32mclose[0m: 0
+[32muser[0m: uid = 1001;
+[32mopen[0m: name = /home/bob/.ssh/config; flags = 5; constrain = (FLAG_CREAT)
+ret: fd=0
+[32mwrite[0m: fd = 0; buf file = data2; unused = 10
+[32mclose[0m: 0
+[32mopen[0m: name = /home/bob/.ssh/config; flags = 5; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 15
+
+ ======= read: 0; 15 bytes ==========
+ttttttttttttttt
+[32mclose[0m: 0
+[32mlist[0m: void
+|_ foo                                          uid=0 mode=0
+|_ home/                                           flags=0x0
+  |_ bob/                                          flags=0x0
+      |_ .ssh/                                     flags=0x0
+          |_ config                          uid=1001 mode=5
+  |_ alice/                                        flags=0x0
+      |_ .ssh/                                     flags=0x0
+          |_ config                          uid=1000 mode=5
+|_ bar[31m*[0m                                         uid=0 mode=0
+|_ broken[31m*[0m                                      uid=0 mode=0
+|_ etc/                                            flags=0x0
+  |_ passwd                                     uid=0 mode=2
+  |_ dbus.conf                                  uid=0 mode=3
+  |_ group                                      uid=0 mode=2
+  |_ default/                                      flags=0x0
+      |_ dbus[31m*[0m                                  uid=0 mode=0
+|_ opt/                                            flags=0x1
+***********  Done *************

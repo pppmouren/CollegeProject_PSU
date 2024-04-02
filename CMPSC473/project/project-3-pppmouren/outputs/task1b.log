@@ -1,0 +1,9 @@
+************ Running commands from file inputs/task1b.cmd on filesystem in file eval/grade-disk.img **********
+[32mlink[0m: target = /foo; name = /bar; constrain = (NONE)
+[32mlink[0m: target = /BAZ; name = /broken; constrain = (NONE)
+[32mlist[0m: void
+|_ foo                                          uid=0 mode=0
+|_ bar[31m*[0m                                         uid=0 mode=0
+|_ broken[31m*[0m                                      uid=0 mode=0
+|_ opt/                                            flags=0x1
+***********  Done *************

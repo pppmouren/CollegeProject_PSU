@@ -1,0 +1,10 @@
+************ Running commands from file inputs/task1a.cmd on filesystem in file eval/grade-disk.img **********
+[32mopen[0m: name = /foo; flags = 0; constrain = (FLAG_CREAT)
+ret: fd=0
+[32mwrite[0m: fd = 0; buf file = data1; unused = 0
+[32mclose[0m: 0
+[32mmkdir[0m: name = /opt; flags = (D_ICASE); constrain = (NONE)
+[32mlist[0m: void
+|_ foo                                          uid=0 mode=0
+|_ opt/                                            flags=0x1
+***********  Done *************

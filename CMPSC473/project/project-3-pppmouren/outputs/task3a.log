@@ -1,0 +1,64 @@
+************ Running commands from file inputs/task3a.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 0;
+[32mmkdir[0m: name = /bin; flags = (NONE); constrain = (NONE)
+[32mopen[0m: name = /bin/cp.1; flags = 1; constrain = (FLAG_CREAT)
+ret: fd=0
+[32mwrite[0m: fd = 0; buf file = data1; unused = 10
+[32mclose[0m: 0
+[32mlink[0m: target = /bin/cp.1; name = /bin/cp; constrain = (NONE)
+[32mopen[0m: name = /bin/cp; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 10
+
+ ======= read: 0; 10 bytes ==========
+rrrrrrrrrr
+[32mclose[0m: 0
+[32muser[0m: uid = 200;
+[32mmkdir[0m: name = /var; flags = (D_ICASE); constrain = (NONE)
+[32mmkdir[0m: name = /var/www; flags = (D_ICASE); constrain = (NONE)
+[32mopen[0m: name = /var/www/index.html; flags = 1; constrain = (FLAG_CREAT)
+ret: fd=0
+[32mopen[0m: name = /var/www/.htpasswd; flags = 1; constrain = (FLAG_CREAT)
+ret: fd=1
+[32mwrite[0m: fd = 1; buf file = data2; unused = 10
+[32mclose[0m: 0
+[32mclose[0m: 1
+[32muser[0m: uid = 1000;
+[32mmkdir[0m: name = /tmp; flags = (D_ICASE); constrain = (NONE)
+[32mlink[0m: target = /var/www/.htpasswd; name = /tmp/steal; constrain = (NONE)
+[32mlist[0m: void
+|_ foo                                          uid=0 mode=0
+|_ bin/                                            flags=0x0
+  |_ cp.1                                       uid=0 mode=1
+  |_ cp[31m*[0m                                        uid=0 mode=0
+|_ tmp/                                            flags=0x1
+  |_ steal[31m*[0m                                  uid=1000 mode=0
+|_ home/                                           flags=0x0
+  |_ bob/                                          flags=0x0
+      |_ .ssh/                                     flags=0x0
+          |_ config                          uid=1001 mode=5
+  |_ alice/                                        flags=0x0
+      |_ .ssh/                                     flags=0x0
+          |_ config                          uid=1000 mode=5
+|_ bar[31m*[0m                                         uid=0 mode=0
+|_ broken[31m*[0m                                      uid=0 mode=0
+|_ etc/                                            flags=0x0
+  |_ passwd                                     uid=0 mode=2
+  |_ dbus.conf                                  uid=0 mode=3
+  |_ group                                      uid=0 mode=2
+  |_ default/                                      flags=0x0
+      |_ dbus[31m*[0m                                  uid=0 mode=0
+|_ var/                                            flags=0x1
+  |_ www/                                          flags=0x1
+      |_ .htpasswd                            uid=200 mode=1
+      |_ index.html                           uid=200 mode=1
+|_ opt/                                            flags=0x1
+[32muser[0m: uid = 200;
+[32mopen[0m: name = /tmp/steal; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 10
+
+ ======= read: 0; 10 bytes ==========
+tttttttttt
+[32mclose[0m: 0
+***********  Done *************

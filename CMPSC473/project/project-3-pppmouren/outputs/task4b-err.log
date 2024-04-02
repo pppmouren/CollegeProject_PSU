@@ -1,0 +1,11 @@
+************ Running commands from file inputs/task4b-err.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 200;
+[32mopen[0m: name = /tmp/steal; flags = 1; constrain = (FLAG_NOFOLLOW_UNTRUSTED)
+[31mCMPSC473 Error:[0m encountered untrusted link
+[31mPath: [0m[/] -> [tmp]^ -> [steal] -> END
+ret: fd=-1
+[32mopen[0m: name = /tmp/html/.htpasswd; flags = 1; constrain = (FLAG_NOFOLLOW_UNTRUSTED)
+[31mCMPSC473 Error:[0m encountered untrusted link
+[31mPath: [0m[/] -> [tmp]^ -> [html] -> [.htpasswd] -> END
+ret: fd=-1
+***********  Done *************

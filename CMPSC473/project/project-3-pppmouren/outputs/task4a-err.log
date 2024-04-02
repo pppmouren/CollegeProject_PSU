@@ -1,0 +1,11 @@
+************ Running commands from file inputs/task4a-err.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 0;
+[32mopen[0m: name = /bin/cp; flags = 1; constrain = (FLAG_NOFOLLOW)
+[31mCMPSC473 Error:[0m cannot open file
+[31mPath: [0m[/] -> [bin]^ -> [cp] -> END
+ret: fd=-1
+[32mopen[0m: name = /tmp/steal; flags = 1; constrain = (FLAG_NOFOLLOW)
+[31mCMPSC473 Error:[0m cannot open file
+[31mPath: [0m[/] -> [tmp]^ -> [steal] -> END
+ret: fd=-1
+***********  Done *************

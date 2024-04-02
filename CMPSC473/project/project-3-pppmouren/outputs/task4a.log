@@ -1,0 +1,18 @@
+************ Running commands from file inputs/task4a.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 0;
+[32mopen[0m: name = /sbin/cp.1; flags = 1; constrain = (FLAG_NOFOLLOW)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 20
+
+ ======= read: 0; 20 bytes ==========
+rrrrrrrrrrrrrrrrrrrr
+[32mclose[0m: 0
+[32muser[0m: uid = 200;
+[32mopen[0m: name = /tmp/html/.htpasswd; flags = 1; constrain = (FLAG_NOFOLLOW)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 20
+
+ ======= read: 0; 20 bytes ==========
+tttttttttttttttttttt
+[32mclose[0m: 0
+***********  Done *************

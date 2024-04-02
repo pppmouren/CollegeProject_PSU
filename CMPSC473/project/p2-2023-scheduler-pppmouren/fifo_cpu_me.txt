@@ -1,0 +1,100 @@
+#include "interface.h"
+#include "scheduler.h"
+
+// Interface implementation
+int clocks;
+Linked_list_t *fifo_list;
+int num_thread;
+int curr_num_thread;
+pthread_mutex_t mutex;
+
+void init_scheduler(int thread_count) {
+    // TODO: Implement this
+    clocks = 0;
+    num_thread = thread_count;
+    curr_num_thread = 0;
+    fifo_list = (Linked_list_t*)malloc(sizeof(Linked_list_t));
+    fifo_list->head = NULL;
+    fifo_list->tail = NULL;
+    pthread_mutex_init(&mutex, NULL);
+}
+
+int cpu_me(float current_time, int tid, int remaining_time) {
+    // TODO: Implement this
+    //insert thread into linked_list until all the threads comes in
+    //go to mutex lock
+    pthread_mutex_lock(&mutex);
+
+    //printf("IT'S THREAD %d grab the lock; remaining time = %d\n", tid, remaining_time);
+
+    thread_info_t *self_thread;
+    //printf("current_num_thread = %d, num_thread = %d\n", curr_num_thread, num_thread);
+    while(curr_num_thread != num_thread){
+
+        //printf("THREAD %d COMES INTO first while of cpu_me \n", tid);
+
+        curr_num_thread = add_thread_to_fifo_list(current_time, tid, remaining_time, fifo_list, curr_num_thread);
+        self_thread = get_self_thread(fifo_list,tid);
+        //printf("out the get_self_thread func\n");
+
+        //all threads are in list, try to wake up the first thread
+        if (curr_num_thread == num_thread){
+            //if the last thread added to the list is the head, then do not need to signal other
+            if(tid == fifo_list->head->tid){
+                //printf("this thread %d is in the head of list\n", tid);
+                //printf("CPU_ME: after add_thread_to_fifo_list func, tid = %d, curr_num_thread:%d \n", tid, curr_num_thread);
+                break;
+            }
+            //signal the head
+            else{
+                //printf("thread %d been woke up by thread %d\n", list->head->tid, self_thread->tid);
+                pthread_cond_signal(&fifo_list->head->cv);
+            }
+        }
+
+        //printf("CPU_ME: after add_thread_to_fifo_list func, tid = %d, curr_num_thread:%d \n", tid, curr_num_thread);
+        //printf("thread %d fall asleep\n", self_thread->tid);
+        pthread_cond_wait(&self_thread->cv, &mutex);
+    }
+
+    //printf("all the thread arrived, thread %d starts run\n", tid);
+ 
+    //critical section
+    //increment clock time
+    if(remaining_time > 0){
+        int sche_time = get_ceiling(current_time);
+        if (clocks < sche_time){
+            clocks = sche_time + 1;
+        }
+        else{
+            clocks = clocks + 1;
+        }
+        self_thread->remain_time -= 1;
+    }
+    //kick out the first entry when the remaining time is 0
+    if(remaining_time == 0){
+        curr_num_thread = pop_thread_from_list(fifo_list, curr_num_thread);
+    }
+
+    //release the lock
+    pthread_mutex_unlock(&mutex);
+
+    //printf("------------------------------------------------------\n");
+    return clocks;
+}
+
+int io_me(float current_time, int tid, int device_id) {
+    // TODO: Implement this
+    return 0;
+}
+
+void end_me(int tid) {
+    // TODO: Implement this
+    //notify the fifo scheduler that there is one thread say bye-bye, and signal the next thread
+    num_thread -= 1;
+    if(fifo_list->head != NULL){
+        pthread_cond_signal(&fifo_list->head->cv);
+    }
+    //printf("END_ME:thread %d comes in; curr_num_thread = %d; total_num_thread = %d.\n", tid, curr_num_thread, num_thread);
+    
+}

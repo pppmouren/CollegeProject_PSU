@@ -1,0 +1,4 @@
+************ Running commands from file inputs/task1b-err.cmd on filesystem in file eval/grade-disk.img **********
+[32mlink[0m: target = /foo; name = /bar; constrain = (NONE)
+[31mCMPSC473 Error:[0m already exists on disk: /bar
+***********  Done *************

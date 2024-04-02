@@ -1,0 +1,24 @@
+************ Running commands from file inputs/task3c.cmd on filesystem in file eval/grade-disk.img **********
+[32muser[0m: uid = 0;
+[32mopen[0m: name = /sbin/cp; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 10
+
+ ======= read: 0; 10 bytes ==========
+rrrrrrrrrr
+[32mclose[0m: 0
+[32mopen[0m: name = /bin/cp; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 10
+
+ ======= read: 0; 10 bytes ==========
+rrrrrrrrrr
+[32mclose[0m: 0
+[32mopen[0m: name = /sbin/cp.1; flags = 1; constrain = (NONE)
+ret: fd=0
+[32mread[0m: fd = 0; buffer = buf; size = 10
+
+ ======= read: 0; 10 bytes ==========
+rrrrrrrrrr
+[32mclose[0m: 0
+***********  Done *************

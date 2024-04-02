@@ -1,0 +1,6 @@
+************ Running commands from file inputs/task3a-err.cmd on filesystem in file eval/grade-disk.img **********
+[32mopen[0m: name = /broken; flags = 1; constrain = (NONE)
+[31mCMPSC473 Error:[0m file does not exist
+[31mPath: [0m[/]^ -> [BAZ] -> END
+ret: fd=-1
+***********  Done *************
