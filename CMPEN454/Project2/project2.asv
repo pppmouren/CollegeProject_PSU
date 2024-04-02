@@ -1,0 +1,74 @@
+clear all; close all; clc;
+load("mocapPoints3D.mat");
+PA = load("Parameters_V1_1.mat");
+PB = load("Parameters_V2_1.mat");
+
+ 
+% Data Section
+ARmax = PA.Parameters.Rmat;
+APmax = PA.Parameters.Pmat;
+AKmax = PA.Parameters.Kmat;
+AtempWorld = zeros(4,1);
+AtempNewWorld = zeros(4,39);
+AtempPixel = zeros(3,39);
+ApixelCoord = zeros(2,39);
+BRmax = PB.Parameters.Rmat;
+BPmax = PB.Parameters.Pmat;
+BKmax = PB.Parameters.Kmat;
+BtempWorld = zeros(4,1);
+BtempPixel = zeros(3,39);
+BpixelCoord = zeros(2,39);
+
+
+% Task 1
+% Transfrom 3D to 2D pixel point
+temp = ones(1,39);
+AworldCoord = [pts3D;temp];
+
+for i = 1:39
+    AtempWorld = AworldCoord(:,i);
+    AtempPixel(:,i) = AKmax*APmax*AtempWorld;
+    ApixelCoord(1,i) = AtempPixel(1,i)/AtempPixel(3,i);
+    ApixelCoord(2,i) = AtempPixel(2,i)/AtempPixel(3,i);
+end
+figure(1)
+I1 = imread("im1corrected.jpg");
+imagesc(I1);
+hold on;
+plot(ApixelCoord(1,:),ApixelCoord(2,:),'m*')
+title("image1-3D to 2D pixel locations")
+% PB
+temp = ones(1,39);
+BworldCoord = [pts3D;temp];
+
+for i = 1:39
+    BtempWorld = BworldCoord(:,i);
+    BtempPixel(:,i) = BKmax*BPmax*BtempWorld;
+    BpixelCoord(1,i) = BtempPixel(1,i)/BtempPixel(3,i);
+    BpixelCoord(2,i) = BtempPixel(2,i)/BtempPixel(3,i);
+end
+figure(2)
+I2 = imread("im2corrected.jpg");
+imagesc(I2);
+hold on;
+plot(BpixelCoord(1,:),BpixelCoord(2,:),'m*')
+title("image2-3D to 2D pixel locations")
+
+% Task 2 
+% 2D to 3D triangulation reconstruction and error calculation
+AtempPixel = [ApixelCoord, temp];
+
+for i = 1:39
+
+end
+
+
+
+
+
+
+
+
+
+
+
